@@ -1,0 +1,12 @@
+artifacts/
+datasets/calibration/*
+datasets/validation/*
+*.engine
+*.om
+*.onnx
+*.cache
+*.safetensors
+*.pt
+*.pth
+__pycache__/
+*.pyc
