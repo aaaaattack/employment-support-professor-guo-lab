@@ -10,3 +10,5 @@ datasets/validation/*
 *.pth
 __pycache__/
 *.pyc
+
+edge_deploy/models/pretrained/
