@@ -127,3 +127,16 @@ command -v trtexec || true
 ```
 
 如果镜像源长时间卡在 `Preparing metadata`，先停止安装，改用具备 TensorRT 的 NVIDIA 容器；不要混装 CUDA 12 的 TensorRT wheel。安装过程可能下载较大的 runtime 库，应确认容器磁盘空间充足。
+
+### 当前安装实测记录（2026-10-14）
+
+已在 A6000 容器中执行：
+
+```bash
+pip install --timeout 60 --retries 3 \
+  tensorrt==11.4.0.106 \
+  tensorrt_cu13==11.4.0.106 \
+  tensorrt_cu13_libs==11.4.0.106
+```
+
+pip 能正确解析 CUDA 13 的 TensorRT 版本，但在 `tensorrt_cu13_libs` runtime 包阶段长时间无输出，最终人工中止；中止后三个模块均未安装，当前容器仍不能构建 TensorRT Engine。磁盘空间不是问题（根分区约 6.3 TB 可用）。后续应在网络更稳定时重试，或使用预装 TensorRT 的 NVIDIA 容器。
