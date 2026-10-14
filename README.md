@@ -1,2 +1,3 @@
-# employment-support-professor-guo-lab
-An employment support program for Professor Guo's Research Group, showcasing students' research projects, engineering experience, AI model deployment work, technical achievements, and job-search materials.
+# Employment Support Program for Professor Guo's Research Group
+
+This repository supports the employment preparation of students in Professor Guo's Research Group by organizing research projects, engineering practices, technical achievements, deployment results, and application materials.
