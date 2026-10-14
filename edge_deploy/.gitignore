@@ -12,3 +12,4 @@ __pycache__/
 *.pyc
 
 edge_deploy/models/pretrained/
+*.msc
