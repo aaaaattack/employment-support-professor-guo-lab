@@ -107,3 +107,23 @@ TensorRT 环境就绪后，按以下顺序补测并记录到 `reports/`：
 2. 对比 PyTorch、ONNX Runtime、TensorRT 的原始输出余弦相似度、MAE、最大误差；
 3. 预热 10 次后测量 100 次，报告 mean/p50/p90/p99；
 4. 最后再接入 NMS 和端到端后处理，单独报告端到端耗时。
+
+## 在当前容器安装 TensorRT（可选）
+
+当前环境为 CUDA 13.0，可优先尝试 CUDA 13 对应的 TensorRT wheel：
+
+```bash
+pip install --timeout 60 --retries 3 \
+  tensorrt==11.4.0.106 \
+  tensorrt_cu13==11.4.0.106 \
+  tensorrt_cu13_libs==11.4.0.106
+```
+
+安装后检查：
+
+```bash
+python -c "import tensorrt as tr; print(tr.__version__)"
+command -v trtexec || true
+```
+
+如果镜像源长时间卡在 `Preparing metadata`，先停止安装，改用具备 TensorRT 的 NVIDIA 容器；不要混装 CUDA 12 的 TensorRT wheel。安装过程可能下载较大的 runtime 库，应确认容器磁盘空间充足。
