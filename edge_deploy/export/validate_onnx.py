@@ -1,10 +1,14 @@
 """Validate an exported ONNX graph and optionally execute one CPU inference."""
+
 from __future__ import annotations
+
 import argparse
 from pathlib import Path
+
 import numpy as np
 import onnx
 import onnxruntime as ort
+
 
 def _concrete_shape(shape):
     out = []
@@ -14,6 +18,7 @@ def _concrete_shape(shape):
         else:
             out.append(1)
     return out
+
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -45,6 +50,7 @@ def main() -> None:
     for index, output in enumerate(outputs):
         arr = np.asarray(output)
         print(f"runtime_output[{index}] shape={arr.shape} dtype={arr.dtype} finite={np.isfinite(arr).all()}")
+
 
 if __name__ == "__main__":
     main()
