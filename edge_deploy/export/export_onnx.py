@@ -12,7 +12,9 @@ from ultralytics import YOLO
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--weights", default=str(Path(__file__).resolve().parents[1] / "models" / "pretrained" / "yolo11n.pt"))
+    parser.add_argument(
+        "--weights", default=str(Path(__file__).resolve().parents[1] / "models" / "pretrained" / "yolo11n.pt")
+    )
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--batch", type=int, default=1)
     parser.add_argument("--device", default="0")
@@ -41,8 +43,7 @@ def main() -> None:
     )
     exported = Path(exported)
     target = args.output_dir / (
-        f"{Path(args.weights).stem}_b{args.batch}_{args.imgsz}_"
-        f"{'fp16' if args.half else 'fp32'}.onnx"
+        f"{Path(args.weights).stem}_b{args.batch}_{args.imgsz}_{'fp16' if args.half else 'fp32'}.onnx"
     )
     if exported.resolve() != target.resolve():
         shutil.copy2(exported, target)
